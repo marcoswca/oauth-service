@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: auth
+  namespace: api
+  labels:
+    name: auth
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: auth
+    spec:
+      containers:
+        - name: auth
+          image: gcr.io/xeroqueo-223220/auth:master
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /api/
+              port: 8080
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /api/
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
+          env:
+          - name: MONGO_HOST
+            value: mongodb://xeroqueo:x3r0qu30@ds111244.mlab.com:11244/auth
+          - name: BASE_URL
+            value: https://api.xeroqueo.com.br/
+          - name: NODE_ENV
+            value: production
