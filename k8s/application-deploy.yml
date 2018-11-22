@@ -34,6 +34,6 @@ spec:
           - name: MONGO_HOST
             value: mongodb://xeroqueo:x3r0qu30@ds111244.mlab.com:11244/auth
           - name: BASE_URL
-            value: https://api.xeroqueo.com.br/
+            value: https://api.xeroqueo.com.br/accountservice/
           - name: NODE_ENV
             value: production

@@ -13,7 +13,7 @@ const randomBytesAsync = promisify(crypto.randomBytes);
  */
 exports.getLogin = (req, res) => {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect('https://xeroqueo.com.br');
   }
   res.render('account/login', {
     title: 'Login'
@@ -45,7 +45,7 @@ exports.postLogin = (req, res, next) => {
     req.logIn(user, (err) => {
       if (err) { return next(err); }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect(req.session.returnTo || '/');
+      res.redirect('https://xeroqueo.com.br');
     });
   })(req, res, next);
 };
@@ -59,7 +59,7 @@ exports.logout = (req, res) => {
   req.session.destroy((err) => {
     if (err) console.log('Error : Failed to destroy the session during logout.', err);
     req.user = null;
-    res.redirect('/');
+    res.redirect('https://xeroqueo.com.br');
   });
 };
 
@@ -69,7 +69,7 @@ exports.logout = (req, res) => {
  */
 exports.getSignup = (req, res) => {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect('https://xeroqueo.com.br');
   }
   res.render('account/signup', {
     title: 'Create Account'
@@ -110,7 +110,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        res.redirect('/');
+        res.redirect('https://xeroqueo.com.br');
       });
     });
   });
@@ -197,7 +197,7 @@ exports.postDeleteAccount = (req, res, next) => {
     if (err) { return next(err); }
     req.logout();
     req.flash('info', { msg: 'Your account has been deleted.' });
-    res.redirect('/');
+    res.redirect('https://xeroqueo.com.br');
   });
 };
 
@@ -225,7 +225,7 @@ exports.getOauthUnlink = (req, res, next) => {
  */
 exports.getReset = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect('https://xeroqueo.com.br');
   }
   User
     .findOne({ passwordResetToken: req.params.token })
@@ -305,7 +305,7 @@ exports.postReset = (req, res, next) => {
 
   resetPassword()
     .then(sendResetPasswordEmail)
-    .then(() => { if (!res.finished) res.redirect('/'); })
+    .then(() => { if (!res.finished) res.redirect('https://xeroqueo.com.br'); })
     .catch(err => next(err));
 };
 
@@ -315,7 +315,7 @@ exports.postReset = (req, res, next) => {
  */
 exports.getForgot = (req, res) => {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect('https://xeroqueo.com.br');
   }
   res.render('account/forgot', {
     title: 'Forgot Password'

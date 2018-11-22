@@ -60,7 +60,6 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
 /**
  * Sign in with Facebook.
  */
-console.log(`${process.env.BASE_URL}auth/facebook/callback/`);
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
